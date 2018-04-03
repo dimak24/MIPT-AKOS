@@ -12,7 +12,7 @@ void readFile(FILE* f, int* string_number, int* word_number, int* char_number) {
     if (!s) {
         perror("calloc error");
         exit(1);
-    }
+        }
     int ch, last = 0, size = 2048;
     while ((ch = fgetc(f)) != EOF) {
         s[last++] = ch;
@@ -30,7 +30,7 @@ void readFile(FILE* f, int* string_number, int* word_number, int* char_number) {
     wchar_t wc;
     int is_word = 0;
     while ((len = mbtowc(&wc, s, end - s)) > 0) {
-        ++*char_number;
+        *char_number += len;
         if (iswspace(wc)) {
             if (is_word)
                 ++*word_number;
